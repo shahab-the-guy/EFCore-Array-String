@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sample.EFCore.ArrayPrimitiveTypes.Domain;
+using Sample.EFCore.ArrayPrimitiveTypes.Storage.Converters;
 
 namespace Sample.EFCore.ArrayPrimitiveTypes.Storage.Configurations;
 public sealed class BookConfiguration : IEntityTypeConfiguration<Book>
@@ -18,8 +19,6 @@ public sealed class BookConfiguration : IEntityTypeConfiguration<Book>
         builder.Property(p => p.Name).IsRequired();
 
         builder.Property(p => p.Tags)
-            .HasConversion(
-                value=> value.ToArray(),
-                dbValue=> dbValue.ToList());
+            .HasConversion<TagsValueConverter>();
     }
 }

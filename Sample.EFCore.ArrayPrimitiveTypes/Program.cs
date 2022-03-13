@@ -8,6 +8,7 @@ using Sample.EFCore.ArrayPrimitiveTypes.Storage;
 
 var configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json" , false, true)
+    .AddJsonFile("appsettings.Development.json" , false, false)
     .Build();
 
 var dbConfig = new DatabaseConfiguration();
@@ -24,5 +25,5 @@ await dbContext.SaveChangesAsync(CancellationToken.None);
 
 
 var newContext = new BooksContext(dbContextOptionsBuilder.Options);
-var fetchedFromDbBook = await newContext.Books.FirstOrDefaultAsync();
+var fetchedFromDbBook = await newContext.Books.FindAsync(Guid.Parse("f5dd1493-25b9-42a2-8fe0-f29541fc7ea7"));
 Console.WriteLine(string.Join("," , fetchedFromDbBook!.Tags));
