@@ -34,6 +34,6 @@ var context = new BooksContext(dbContextOptionsBuilder.Options);
 // });
 // await context.SaveChangesAsync();
 
-var c = context.Drafts.FindAsync(Guid.Parse("4042662c-3b7a-4970-aee5-8bdc6d5e7d1d"), "Sample");
+var c = await context.Drafts.FindAsync(Guid.Parse("4042662c-3b7a-4970-aee5-8bdc6d5e7d1d"), "Sample");
 
 Console.WriteLine("Hooray!");
