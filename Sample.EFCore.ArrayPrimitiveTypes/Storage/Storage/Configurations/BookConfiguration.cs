@@ -8,7 +8,7 @@ public sealed class BookConfiguration : IEntityTypeConfiguration<Book>
 {
     public void Configure(EntityTypeBuilder<Book> builder)
     {
-        builder.ToContainer("Books");
+        builder.ToContainer("Books").HasNoDiscriminator();
 
         builder.HasKey(p => p.Id);
         builder.HasPartitionKey(p => p.Id);
